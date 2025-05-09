@@ -9,14 +9,14 @@ export default function DetailsScreen({ navigation }) {
             <Text style={styles.title}>Details Screen</Text>
             <View style={styles.buttonContainer}>
                 <Button
-                    title="Go to Home"
-                    onPress={() => navigation.navigate('Home')}
+                    title="Go to Profile"
+                    onPress={() => navigation.navigate('Profile')}
                 />
             </View>
             <View style={styles.buttonContainer}>
                 <Button
-                    title="Go to Profile"
-                    onPress={() => navigation.navigate('Profile')}
+                    title="Go Back"
+                    onPress={() => navigation.goBack()}
                 />
             </View>
         </View>
