@@ -18,6 +18,7 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>LOGIN</Text>
       <TextInput
         style={styles.input}
         placeholder='Digite o seu email'
@@ -59,5 +60,10 @@ const styles = StyleSheet.create({
   erro: {
     color: 'red',
     marginTop: 10,
+  },
+  titulo: {
+    fontSize: 24,
+    marginBottom: 20,
+    color: '#2c3e50',
   },
 });
