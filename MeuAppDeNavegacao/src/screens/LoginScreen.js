@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f8ff',
+    backgroundColor: 'purple',
     padding: 20,
   },
   input: {
@@ -75,5 +75,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: 'black',
+    fontWeight: 'bold',
   },
 });
