@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -7,18 +7,12 @@ export default function ProfileScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Profile Screen</Text>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go to Details"
-                    onPress={() => navigation.navigate('Details')}
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go Back"
-                    onPress={() => navigation.goBack()}
-                />
-            </View>
+            <TouchableOpacity style={{ backgroundColor: 'blue', padding: 10, borderRadius: 5, margin: 10, width: windowWidth * 0.5}} onPress={() => navigation.navigate('Details')}>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center'  }}>Ir para detalhes</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: 'blue', padding: 10, borderRadius: 5, margin: 10, width: windowWidth * 0.5}} onPress={() => navigation.goBack()}>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center'  }}>Ir para tela anterior</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -33,11 +27,5 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         marginBottom: 20,
-    },
-    buttonContainer: {
-        backgroundColor: '#dda0dd',
-        margin: 10,
-        width: windowWidth * 0.5,
-        borderRadius: 5,
     },
 });

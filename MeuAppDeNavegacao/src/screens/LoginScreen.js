@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Dimensions, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const user = 'admin';
+const password = '1234';
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState('');
+  const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
-  const [mensagemErro, setMensagemErro] = useState('');
 
   const verificarCampos = () => {
-    if (!email || !senha) {
-      setMensagemErro('Por favor, preencha todos os campos.');
-      return;
+    if (!usuario || !senha) {
+      Alert.alert('Erro', 'Preencha todos os campos.');
+    } else if (usuario == user && senha != password) {
+      Alert.alert('Erro', 'Senha incorreta.');
+      setSenha('');
+    } else if (usuario != user && senha == password) {
+      Alert.alert('Erro', 'Usuário incorreto.');
+      setUsuario('');
+      setSenha('');
+    } else if (usuario != user && senha != password) {
+      Alert.alert('Erro', 'Usuário e senha incorretos.');
+      setUsuario('');
+      setSenha('');
+    } else {
+      Alert.alert('Sucesso', 'Login realizado com sucesso!');
+      navigation.navigate('Home');
     }
-
-    setMensagemErro(''); // limpa mensagem de erro se tudo estiver certo
-    navigation.navigate('Home'); // substitua pelo nome real
   };
 
   return (
@@ -21,21 +34,22 @@ export default function LoginScreen({ navigation }) {
       <Text style={styles.titulo}>LOGIN</Text>
       <TextInput
         style={styles.input}
-        placeholder='Digite o seu email'
-        keyboardType='email-address'
-        value={email}
-        onChangeText={setEmail}
+        placeholder='Digite o seu usuário'
+        keyboardType='default'
+        value={usuario}
+        onChangeText={setUsuario}
       />
       <TextInput
         style={styles.input}
         placeholder='Digite a sua senha'
-        keyboardType='default'
+        keyboardType='password'
         secureTextEntry
         value={senha}
         onChangeText={setSenha}
       />
-      <Button title='Login' onPress={verificarCampos} />
-      {mensagemErro ? <Text style={styles.erro}>{mensagemErro}</Text> : null}
+      <TouchableOpacity style={{ backgroundColor: 'blue', padding: 10, borderRadius: 5, margin: 10, width: windowWidth * 0.5 }} onPress={verificarCampos}>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>LOGIN</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -57,13 +71,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#e0f7fa',
   },
-  erro: {
-    color: 'red',
-    marginTop: 10,
-  },
   titulo: {
     fontSize: 24,
     marginBottom: 20,
-    color: '#2c3e50',
+    color: 'black',
   },
 });

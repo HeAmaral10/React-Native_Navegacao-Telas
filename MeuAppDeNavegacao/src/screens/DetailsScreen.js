@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -7,18 +7,12 @@ export default function DetailsScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Details Screen</Text>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go to Profile"
-                    onPress={() => navigation.navigate('Profile')}
-                />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Go Back"
-                    onPress={() => navigation.goBack()}
-                />
-            </View>
+            <TouchableOpacity style={{ backgroundColor: 'blue', padding: 10, borderRadius: 5, margin: 10, width: windowWidth * 0.5 }} onPress={() => navigation.navigate('Home')}>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Ir para home</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ backgroundColor: 'blue', padding: 10, borderRadius: 5, margin: 10, width: windowWidth * 0.5 }} onPress={() => navigation.navigate('Profile')}>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center'  }}>Ir para perfil</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -33,11 +27,5 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         marginBottom: 20,
-    },
-    buttonContainer: {
-        backgroundColor: '#ffebcd',
-        margin: 10,
-        width: windowWidth * 0.5,
-        borderRadius: 5,
     },
 });
